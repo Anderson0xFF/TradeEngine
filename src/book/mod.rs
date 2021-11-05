@@ -12,7 +12,7 @@ impl Book {
         Self { orders: Vec::new() }
     }
 
-    pub fn buy_all(&self) -> Vec<Order> {
+    fn buy_all(&self) -> Vec<Order> {
         let mut buffer = Vec::new();
         for value in self.orders.clone() {
             if value.side().eq(&OrderSide::BUY) {
@@ -22,14 +22,13 @@ impl Book {
         buffer
     }
 
-    pub fn sell_all(&self) -> Vec<Order> {
+    fn sell_all(&self) -> Vec<Order> {
         let mut buffer = Vec::new();
         for value in self.orders.clone() {
             if value.side().eq(&OrderSide::SELL) {
                 buffer.push(value);
             }
         }
-
         buffer
     }
 
