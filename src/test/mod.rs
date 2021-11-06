@@ -1,6 +1,9 @@
+use crate::{book::Book, orders, trade_history::TradeHistory};
 use serde_json::Value;
 
-use crate::{book::Book, orders, trade_history::TradeHistory};
+const ORDERS_PATH: &str = "orders.json";
+const ORDERBOOK_PATH: &str = "orderbook.json";
+const TRADE_HISTORIC_PATH: &str = "trades.json";
 
 fn search_order_file(file: &str) -> Result<Vec<Value>, ()> {
     match orders::open_orders_file(file) {
@@ -11,31 +14,30 @@ fn search_order_file(file: &str) -> Result<Vec<Value>, ()> {
     };
 }
 
-pub fn run(order_json_file: &str) {
-    println!("Looking for {}", order_json_file);
-    let data = search_order_file(order_json_file);
+pub fn run() {
+    println!("Looking for {}", ORDERS_PATH);
+    let data = search_order_file(ORDERS_PATH);
 
     assert_ne!(data, Err(()));
-    println!("Looking for {} [OK]", order_json_file);
+    println!("Looking for {} [OK]", ORDERS_PATH);
 
     let mut history = TradeHistory::new();
     let mut book = Book::new();
 
-    println!("Reader: {}", order_json_file);
+    println!("Reader: {}", ORDERS_PATH);
     book.reader_orders(data.unwrap());
 
-    println!("Reader: {} OK", order_json_file);
+    println!("Reader: {} OK", ORDERS_PATH);
     println!("Save Orderbook");
 
-    book.save("orderbook.json");
+    book.save(ORDERBOOK_PATH);
     println!("Save Orderbook: [OK]");
 
     println!("Processing trades:");
     book.process_orders(&mut history);
 
     println!("Processing trades:[OK]");
-    history.save("trades.json");
+    history.save(TRADE_HISTORIC_PATH);
 
     println!("Save trades historic in : {}", "trades.json");
-
 }
