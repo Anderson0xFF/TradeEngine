@@ -1,4 +1,6 @@
 #![allow(dead_code)]
+use std::{fs::File, io::Write};
+
 use serde_json::Value;
 
 use crate::{
@@ -67,6 +69,13 @@ impl Book {
         buffer.sort_by(|x, y| x.limit_price().partial_cmp(&y.limit_price()).unwrap());
         buffer.reverse();
         buffer
+    }
+
+    pub fn save(&self, path: &str){
+        let mut file = File::create(&path).unwrap();
+        let string = serde_json::to_string_pretty(&self.orders).unwrap();
+        file.write_all(string.as_bytes()).unwrap();
+        file.flush().unwrap();
     }
 
     pub fn reader_orders(&mut self, orders: Vec<Value>) {

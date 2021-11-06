@@ -1,5 +1,7 @@
 #![allow(dead_code)]
 
+use std::{fs::File, io::Write};
+
 use crate::orders::Order;
 use chrono::{DateTime, Local};
 use serde::{Deserialize, Serialize};
@@ -39,11 +41,11 @@ impl TradeHistory {
         self.history.push(history);
     }
 
-    pub fn save(&mut self) {
-        for value in &self.history {
-            let va = serde_json::to_string_pretty(&value).unwrap();
-            println!("{}", va);
-        }
+    pub fn save(&mut self, path: &str) {
+        let mut file = File::create(&path).unwrap();
+        let string = serde_json::to_string_pretty(&self.history).unwrap();
+        file.write_all(string.as_bytes()).unwrap();
+        file.flush().unwrap();
     }
 
     /// Get a reference to the trade history's history.

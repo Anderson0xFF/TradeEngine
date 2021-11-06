@@ -105,12 +105,16 @@ impl Order {
             Err(e) => return Err(e),
         };
 
+        let mut pair = input["pair"].to_string();
+        pair.remove(0);
+        pair.remove(pair.len() - 1);
+
         Ok(Order::new(
             type_op,
             account_id,
             amount,
             order_id,
-            input["pair"].to_string(),
+            pair,
             limit_price,
             side,
         ))
