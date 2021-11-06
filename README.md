@@ -17,3 +17,15 @@ compra do mais caro ao mais barato.
 Os pedidos podem ser de compra ou venda.
 Cada vez que um novo pedido é inserido, ele é avaliado em relação ao lado oposto da carteira
 de pedidos, se houver uma chance de corresponder.
+
+## Implementações
+ - [x] OrderBook
+ - [x] Processamento de orders completas ou parciais.
+ - [x] Modulo de Testes
+ - [x] Logs em Json
+
+## Compilando 
+~~~shell
+cargo build
+cargo run
+~~~
