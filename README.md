@@ -1,7 +1,7 @@
 # TradeEngine
 
 
-Introdução
+## Introdução
 
 Um "mecanismo de negociação" é responsável por processar as ordens que os usuários criam
 em um exchange. 
@@ -18,6 +18,12 @@ Os pedidos podem ser de compra ou venda.
 Cada vez que um novo pedido é inserido, ele é avaliado em relação ao lado oposto da carteira
 de pedidos, se houver uma chance de corresponder.
 
+## Sobre
+
+Ao executa a aplicação, ele iniciará um teste, lendo as ordens do arquivo ```orders.json```, logo
+após, ele irá processar as orders e salvar o resultado das ordens em um arquivo ```trades.json```.
+
+O historico do livro será salvo como ```orderbook.json```.
 ## Implementações
  - [x] OrderBook
  - [x] Processamento de orders completas ou parciais.
