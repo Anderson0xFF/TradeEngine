@@ -115,4 +115,34 @@ impl Order {
             side,
         ))
     }
+
+    /// Get a reference to the order's order id.
+    pub fn order_id(&self) -> u32 {
+        self.order_id
+    }
+
+    /// Get a reference to the order's type op.
+    pub fn type_op(&self) -> &OrderType {
+        &self.type_op
+    }
+
+    /// Get a reference to the order's account id.
+    pub fn account_id(&self) -> u32 {
+        self.account_id
+    }
+
+    /// Get a reference to the order's amount.
+    pub fn amount(&self) -> f32 {
+        self.amount
+    }
+
+    /// Get a mutable reference to the order's amount.
+    pub fn amount_mut(&mut self) -> &mut f32 {
+        &mut self.amount
+    }
+
+    /// Set the order's amount.
+    pub fn set_amount(&mut self, amount: f32) {
+        self.amount = amount;
+    }
 }
