@@ -1,7 +1,7 @@
-use crate::{book::Book, tradehistory::TradeHistory};
+use crate::{book::Book, trade_history::TradeHistory};
 mod book;
 mod orders;
-mod tradehistory;
+mod trade_history;
 fn main() {
     let data = orders::open_orders_file("orders.json");
 

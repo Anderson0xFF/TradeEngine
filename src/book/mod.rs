@@ -3,7 +3,7 @@ use serde_json::Value;
 
 use crate::{
     orders::{orderside::OrderSide, ordertype::OrderType, Order},
-    tradehistory::{OrderStatus, TradeHistory},
+    trade_history::{OrderStatus, TradeHistory},
 };
 
 pub struct Book {
