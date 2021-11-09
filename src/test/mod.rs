@@ -39,5 +39,5 @@ pub fn run() {
     println!("Processing trades:[OK]");
     history.save(TRADE_HISTORIC_PATH);
 
-    println!("Save trades historic in : {}", "trades.json");
+    println!("Save trades historic in : {}", TRADE_HISTORIC_PATH);
 }
